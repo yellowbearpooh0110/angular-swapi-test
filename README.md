@@ -4,6 +4,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## How To Install and Start This Application
 
+- Confirm that your node version is `^14.15.0 || >=16.10.0`
+- Run `git clone https://github.com/yellowbearpooh0110/angular-swapi-test.git` command
+- Run `cd angular-swapi-test` command
 - Run `npm install` or `yarn install` command.
 - Run `npm run start` or `yarn start` command.
 - Naviate to this url: http://localhost:4200/

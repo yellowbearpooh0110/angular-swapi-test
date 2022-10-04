@@ -1,11 +1,14 @@
 <div class="topnav">
-  <a>Search 1</a>
-  <a>Search 2</a>
-  <a>Search 3</a>
+  <a
+    *ngFor="let search of lastSearches"
+    [routerLink]="search.link"
+    [queryParams]="{ search: search.keyword }"
+    >{{ search.keyword }}</a
+  >
   <div class="search-container">
     <form>
-      <input type="text" placeholder="Search.." name="search" />
-      <button (click)="handleSearch($event)">
+      <input type="text" #serachKey placeholder="Search.." name="search" />
+      <button (click)="handleSearch($event, serachKey.value)">
         <i class="fa fa-search"></i>
       </button>
     </form>

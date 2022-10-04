@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { AppHelper } from './app-helper';
+
 import { Observable } from 'rxjs';
+import { AppHelper } from 'src/app/app-helper';
 
 export type PersonType = {
   name: string;
@@ -87,24 +88,30 @@ export class SwapiService {
     return this.Http.get<DataType>(url);
   }
 
-  getPeople() {
-    return this.Http.get<PeopleType>(`${AppHelper.apiURL}people`);
+  getPeople(keyword?: string) {
+    return this.Http.get<PeopleType>(
+      `${AppHelper.apiURL}people${keyword ? `/?search=${keyword}` : ''}`
+    );
   }
 
   getPersonByIndex(index: string) {
     return this.Http.get<PersonType>(`${AppHelper.apiURL}people/${index}`);
   }
 
-  getPlanets() {
-    return this.Http.get<PlanetsType>(`${AppHelper.apiURL}planets`);
+  getPlanets(keyword?: string) {
+    return this.Http.get<PlanetsType>(
+      `${AppHelper.apiURL}planets${keyword ? `/?search=${keyword}` : ''}`
+    );
   }
 
   getPlanetByIndex(index: string) {
     return this.Http.get<PlanetType>(`${AppHelper.apiURL}planets/${index}`);
   }
 
-  getFilms() {
-    return this.Http.get<FilmsType>(`${AppHelper.apiURL}films`);
+  getFilms(keyword?: string) {
+    return this.Http.get<FilmsType>(
+      `${AppHelper.apiURL}films${keyword ? `/?search=${keyword}` : ''}`
+    );
   }
 
   getFilmByIndex(index: string) {

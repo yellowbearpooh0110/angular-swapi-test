@@ -2,7 +2,12 @@
   *ngFor="let link of links"
   [routerLink]="link.to"
   routerLinkActive="active"
-  [routerLinkActiveOptions]="{ exact: true }"
+  [routerLinkActiveOptions]="{
+    matrixParams: 'exact',
+    queryParams: 'ignored',
+    paths: 'exact',
+    fragment: 'exact'
+  }"
 >
   {{ link.label }}
 </a>

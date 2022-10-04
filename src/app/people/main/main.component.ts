@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { SearchService } from 'src/app/services/search.service';
 
-import { PlanetType, SwapiService } from 'src/app/swapi.service';
+import { PlanetType, SwapiService } from 'src/app/services/swapi.service';
 
 export type PeopleDataType = {
   id: string;
@@ -17,19 +19,50 @@ export type PeopleDataType = {
 })
 export class MainComponent implements OnInit {
   peopleData: Array<PeopleDataType> = [];
-  constructor(private swapi: SwapiService) {}
 
-  ngOnInit(): void {
-    this.loadPeople();
+  constructor(
+    private swapiService: SwapiService,
+    private searchService: SearchService,
+    private route: ActivatedRoute
+  ) {
+    this.searchService.songAdded$.subscribe((keyword) => {
+      this.swapiService.getPeople(keyword).subscribe((response) => {
+        this.peopleData = [];
+        response.results.forEach((_person) => {
+          this.peopleData.push({
+            id: _person.url.match(/[0-9]+/g)?.pop() || '',
+            name: _person.name,
+            homeworld: this.swapiService.getFunction<PlanetType>(
+              _person.homeworld
+            ),
+            height:
+              Number(_person.height) < 100
+                ? 'low'
+                : Number(_person.height) > 200
+                ? 'high'
+                : 'normal',
+          });
+        });
+      });
+    });
   }
 
-  private loadPeople() {
-    this.swapi.getPeople().subscribe((response) => {
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      this.loadPeople(params['search']);
+    });
+  }
+
+  private loadPeople(keyword?: string) {
+    this.swapiService.getPeople(keyword).subscribe((response) => {
+      this.peopleData = [];
       response.results.forEach((_person) => {
         this.peopleData.push({
           id: _person.url.match(/[0-9]+/g)?.pop() || '',
           name: _person.name,
-          homeworld: this.swapi.getFunction<PlanetType>(_person.homeworld),
+          homeworld: this.swapiService.getFunction<PlanetType>(
+            _person.homeworld
+          ),
           height:
             Number(_person.height) < 100
               ? 'low'

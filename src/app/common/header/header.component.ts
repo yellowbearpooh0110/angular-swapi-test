@@ -9,4 +9,9 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  handleSearch(event: MouseEvent): void {
+    console.log(event);
+    event.preventDefault();
+  }
 }

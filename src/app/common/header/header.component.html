@@ -5,7 +5,9 @@
   <div class="search-container">
     <form>
       <input type="text" placeholder="Search.." name="search" />
-      <button><i class="fa fa-search"></i></button>
+      <button (click)="handleSearch($event)">
+        <i class="fa fa-search"></i>
+      </button>
     </form>
   </div>
 </div>

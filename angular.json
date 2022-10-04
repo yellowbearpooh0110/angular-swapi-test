@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-swap-test": {
+    "angular-swapi-test": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-swap-test",
+            "outputPath": "dist/angular-swapi-test",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -64,10 +64,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-swap-test:build:production"
+              "browserTarget": "angular-swapi-test:build:production"
             },
             "development": {
-              "browserTarget": "angular-swap-test:build:development"
+              "browserTarget": "angular-swapi-test:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -75,7 +75,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-swap-test:build"
+            "browserTarget": "angular-swapi-test:build"
           }
         },
         "test": {

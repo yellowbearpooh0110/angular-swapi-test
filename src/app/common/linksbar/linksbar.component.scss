@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  padding: 14px 16px;
+  background-color: gainsboro;
+}
+
+a {
+  text-decoration: none;
+  text-transform: capitalize;
+  &.active {
+    font-weight: bold;
+  }
+}

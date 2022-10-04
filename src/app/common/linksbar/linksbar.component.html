@@ -1,1 +1,8 @@
-<p>linksbar works!</p>
+<a
+  *ngFor="let link of links"
+  [routerLink]="link.to"
+  routerLinkActive="active"
+  [routerLinkActiveOptions]="{ exact: true }"
+>
+  {{ link.label }}
+</a>

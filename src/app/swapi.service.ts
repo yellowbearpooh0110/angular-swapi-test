@@ -3,7 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { AppHelper } from './app-helper';
 import { Observable } from 'rxjs';
 
-export type PeopleType = {
+export type PersonType = {
   name: string;
   height: string;
   mass: string;
@@ -22,11 +22,59 @@ export type PeopleType = {
   url: string;
 };
 
-export type GetPeopleResponseType = {
+export type PeopleType = {
   count: number;
   next: string | null;
   previous: string | null;
-  results: Array<PeopleType>;
+  results: Array<PersonType>;
+};
+
+export type PlanetType = {
+  name: string;
+  rotation_period: string;
+  orbital_period: string;
+  diameter: string;
+  climate: string;
+  gravity: string;
+  terrain: string;
+  surface_water: string;
+  population: string;
+  residents: Array<string>;
+  films: Array<string>;
+  created: string;
+  edited: string;
+  url: string;
+};
+
+export type PlanetsType = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Array<PlanetType>;
+};
+
+export type FilmType = {
+  title: string;
+  episode_id: 4;
+  opening_crawl: string;
+  director: string;
+  producer: string;
+  release_date: string;
+  characters: Array<string>;
+  planets: Array<string>;
+  starships: Array<string>;
+  vehicles: Array<string>;
+  species: Array<string>;
+  created: string;
+  edited: string;
+  url: string;
+};
+
+export type FilmsType = {
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: Array<FilmType>;
 };
 
 @Injectable({
@@ -35,7 +83,31 @@ export type GetPeopleResponseType = {
 export class SwapiService {
   constructor(private Http: HttpClient) {}
 
-  getPeople(): Observable<GetPeopleResponseType> {
-    return this.Http.get<GetPeopleResponseType>(`${AppHelper.apiURL}people`);
+  getFunction<DataType extends any>(url: string) {
+    return this.Http.get<DataType>(url);
+  }
+
+  getPeople() {
+    return this.Http.get<PeopleType>(`${AppHelper.apiURL}people`);
+  }
+
+  getPersonByIndex(index: string) {
+    return this.Http.get<PersonType>(`${AppHelper.apiURL}people/${index}`);
+  }
+
+  getPlanets() {
+    return this.Http.get<PlanetsType>(`${AppHelper.apiURL}planets`);
+  }
+
+  getPlanetByIndex(index: string) {
+    return this.Http.get<PlanetType>(`${AppHelper.apiURL}planets/${index}`);
+  }
+
+  getFilms() {
+    return this.Http.get<FilmsType>(`${AppHelper.apiURL}films`);
+  }
+
+  getFilmByIndex(index: string) {
+    return this.Http.get<FilmType>(`${AppHelper.apiURL}films/${index}`);
   }
 }

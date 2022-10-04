@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './common/header/header.component';
 import { LinksbarComponent } from './common/linksbar/linksbar.component';
 import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
+import { WorkInProgressComponent } from './common/work-in-progress/work-in-progress.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { PageNotFoundComponent } from './common/page-not-found/page-not-found.co
     HeaderComponent,
     LinksbarComponent,
     PageNotFoundComponent,
+    WorkInProgressComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule],
   providers: [],

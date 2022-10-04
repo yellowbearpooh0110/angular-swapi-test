@@ -1,1 +1,5 @@
-<p>main works!</p>
+<div *ngFor="let person of peopleData">
+  {{ person.name }} / {{ (person.homeworld | async)?.name || "Loading..." }} /
+  {{ person.height }}
+  <a [routerLink]="person.id">More Details</a>
+</div>

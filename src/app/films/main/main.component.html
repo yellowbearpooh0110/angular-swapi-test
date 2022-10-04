@@ -1,1 +1,4 @@
-<p>main works!</p>
+<div *ngFor="let film of filmsData">
+  {{ film.title }} / {{ film.director }} / {{ film.release_date }}
+  <a [routerLink]="film.id">More Details</a>
+</div>

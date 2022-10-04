@@ -5,8 +5,8 @@
 }
 
 a {
-  text-decoration: none;
   text-transform: capitalize;
+  margin-right: 10px;
   &.active {
     font-weight: bold;
   }

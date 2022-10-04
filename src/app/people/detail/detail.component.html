@@ -1,1 +1,49 @@
-<p>detail works!</p>
+<ng-template [ngIf]="personData">
+  <div>Name: "{{ personData.name }}"</div>
+  <div>
+    Height: {{ personData.height
+    }}{{ personData.height === "unknown" ? "" : "cm" }}
+  </div>
+  <div>
+    Mass: {{ personData.mass }}{{ personData.mass === "unknown" ? "" : "kg" }}
+  </div>
+  <div>Hair Color: {{ personData.hair_color }}</div>
+  <div>Skin Color: {{ personData.skin_color }}</div>
+  <div>Eye Color: {{ personData.eye_color }}</div>
+  <div>Birth Year: {{ personData.birth_year }}</div>
+  <div>Gender: {{ personData.gender }}</div>
+  <div>Homeworld: {{ personData.homeworld }}</div>
+  <div>
+    Films:
+    <li *ngFor="let film of personData.films">
+      <a [href]="film">{{ film }}</a>
+    </li>
+  </div>
+  <div>
+    Species:
+    <li *ngFor="let specie of personData.species">
+      <a [href]="specie">{{ specie }}</a>
+    </li>
+  </div>
+  <div>
+    Vehicles:
+    <li *ngFor="let vehicle of personData.vehicles">
+      <a [href]="vehicle">{{ vehicle }}</a>
+    </li>
+  </div>
+  <div>
+    Starships:
+    <li *ngFor="let starship of personData.starships">
+      <a [href]="starship">{{ starship }}</a>
+    </li>
+  </div>
+  <div>Created: {{ personData.created }}</div>
+  <div>Edited: {{ personData.edited }}</div>
+  <div>Url: {{ personData.url }}</div>
+</ng-template>
+<a
+  routerLink="/people"
+  [queryParams]="keyword ? { search: keyword } : undefined"
+>
+  Back
+</a>

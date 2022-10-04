@@ -15,8 +15,10 @@ export class HeaderComponent implements OnInit {
 
   handleSearch(event: MouseEvent, keyword: string): void {
     event.preventDefault();
+    const path = this.router.url.split('?')[0];
+    if (!['/films', '/people'].includes(path)) return;
     this.searchService.emitSearchEvent(keyword);
-    this.lastSearches.push({ keyword, link: this.router.url.split('?')[0] });
+    this.lastSearches.push({ keyword, link: path });
     if (this.lastSearches.length > 4) this.lastSearches.shift();
   }
 }

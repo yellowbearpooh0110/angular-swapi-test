@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { SearchService } from 'src/app/services/search.service';
 
+import { AppHelper } from 'src/app/app-helper';
+import { SearchService } from 'src/app/services/search.service';
 import { PlanetType, SwapiService } from 'src/app/services/swapi.service';
 
 export type PeopleDataType = {
@@ -26,6 +27,7 @@ export class MainComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.searchService.songAdded$.subscribe((keyword) => {
+      AppHelper.keyword = keyword;
       this.swapiService.getPeople(keyword).subscribe((response) => {
         this.peopleData = [];
         response.results.forEach((_person) => {
@@ -50,6 +52,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.loadPeople(params['search']);
+      AppHelper.keyword = params['search'];
     });
   }
 

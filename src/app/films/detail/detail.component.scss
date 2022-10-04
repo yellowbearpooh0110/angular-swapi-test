@@ -1,0 +1,15 @@
+:host {
+  padding: 14px 16px;
+  display: block;
+}
+
+:host > div {
+  padding: 10px 0;
+  word-break: break-all;
+}
+
+:host > a {
+  margin-left: auto;
+  width: fit-content;
+  display: block;
+}

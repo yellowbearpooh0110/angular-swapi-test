@@ -1,1 +1,50 @@
-<p>detail works!</p>
+<ng-template [ngIf]="filmData">
+  <div>Title: "{{ filmData.title }}"</div>
+  <div>Episode Id: {{ filmData.episode_id }}</div>
+  <div>Opening Crawl: "{{ filmData.opening_crawl }}"</div>
+  <div>Director: "{{ filmData.director }}"</div>
+  <div>Producer: "{{ filmData.producer }}"</div>
+  <div>Release Date: {{ filmData.release_date }}</div>
+  <div>
+    Characters:
+    <li *ngFor="let character of filmData.characters">
+      <a [href]="character">{{ character }}</a>
+    </li>
+  </div>
+  <div>
+    Planets:
+    <li *ngFor="let planet of filmData.planets">
+      <a [href]="planet">{{ planet }}</a>
+    </li>
+  </div>
+  <div>
+    Starships:
+    <li *ngFor="let starship of filmData.starships">
+      <a [href]="starship">{{ starship }}</a>
+    </li>
+  </div>
+  <div>
+    Vehicles:
+    <li *ngFor="let vehicle of filmData.vehicles">
+      <a [href]="vehicle">{{ vehicle }}</a>
+    </li>
+  </div>
+  <div>
+    Species:
+    <li *ngFor="let specie of filmData.species">
+      <a [href]="specie">{{ specie }}</a>
+    </li>
+  </div>
+  <div>Created: {{ filmData.created }}</div>
+  <div>Edited: {{ filmData.edited }}</div>
+  <div>
+    Url:
+    <a [href]="filmData.url">{{ filmData.url }}</a>
+  </div>
+</ng-template>
+<a
+  routerLink="/films"
+  [queryParams]="keyword ? { search: keyword } : undefined"
+>
+  Back
+</a>

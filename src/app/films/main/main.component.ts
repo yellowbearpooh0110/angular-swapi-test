@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { SearchService } from 'src/app/services/search.service';
 
+import { AppHelper } from 'src/app/app-helper';
+import { SearchService } from 'src/app/services/search.service';
 import { SwapiService } from 'src/app/services/swapi.service';
 
 export type FilmDataType = {
@@ -25,6 +26,7 @@ export class MainComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.searchService.songAdded$.subscribe((keyword) => {
+      AppHelper.keyword = keyword;
       this.swapiService.getFilms(keyword).subscribe((response) => {
         this.filmsData = [];
         response.results.forEach((_film) => {
@@ -42,6 +44,7 @@ export class MainComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
       this.loadFilms(params['search']);
+      AppHelper.keyword = params['search'];
     });
   }
 
